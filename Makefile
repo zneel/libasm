@@ -26,5 +26,4 @@ test:
 	make $(NAME)
 	gcc -Wall -Wextra -Werror -g3 main.c -L. -lasm -o test
 	./test
-	rm -f test
 .PHONY: all clean fclean re

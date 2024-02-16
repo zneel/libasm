@@ -24,7 +24,8 @@ ft_strcpy:
     je .done ; goto done
     movzx rax, byte [rsi + rdx] ; store temp src[i]
     mov byte [rdi + rdx], al ; dst[i] = src[i]
-    add rdx, 1 ; i++
+    inc rdx ; i++
+    jmp .loop
 
 .done:
     mov byte [rdi + rdx], 0

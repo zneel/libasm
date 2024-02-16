@@ -8,7 +8,7 @@ int main() {
   char *str1 = "Hello, World!\n";
   char *str2 = "This is the second string.\n";
   char *str3 = "Another string to test our ft_strlen...\n";
-  char *str4 = "And one more!\n";
+  char *str4 = "";
 
   write(1, str1, ft_strlen(str1));
   write(1, str2, ft_strlen(str2));

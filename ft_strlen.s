@@ -18,7 +18,7 @@ ft_strlen:
 .loop:
     cmp byte [rdi + rdx], 0 ; compare str[i]
     je .done ; if str[i] == '\0' goto done
-    add rdx, 1 ; i++
+    inc rdx ; i++
     jmp .loop ; goto loop
 
 .done:
