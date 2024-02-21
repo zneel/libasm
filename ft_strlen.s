@@ -1,27 +1,14 @@
-; size_t ft_strlen(const char *s)
-; {
-;     size_t i = 0;
-;     while (s[i])
-;         i++;
-;     return (i);
-; }
-
-section .text
-    global ft_strlen
+global ft_strlen
 
 ft_strlen:
-    push rbp
-    mov rbp, rsp ; setup stackframe
-    mov rdx, 0 ; size_t i = 0
-    jmp .loop
+    xor rax, rax
 
 .loop:
-    cmp byte [rdi + rdx], 0 ; compare str[i]
-    je .done ; if str[i] == '\0' goto done
-    inc rdx ; i++
-    jmp .loop ; goto loop
+    cmp byte [rdi], 0 ; check if current byte is null
+    je .done
+    inc rax ; increment output
+    inc rdi ; increment str
+    jmp .loop
 
 .done:
-    mov rax, rdx ; return i
-    pop rbp ; restore stack
     ret

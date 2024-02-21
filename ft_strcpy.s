@@ -1,34 +1,17 @@
-; char *strcpy(char *restrict dst, const char *restrict src)
-; {
-;     size_t i = 0;
-;     while (src[i])
-;     {
-;         dst[i] = src[i];
-;         i++;
-;     }
-;     dst[i] = 0;
-;     return dst;
-; }
-
-section .text
-    global ft_strcpy
+global ft_strcpy
 
 ft_strcpy:
-    push rbp;
-    mov rbp, rsp; ; setup stack frame
-    mov rdx, 0 ; size_t i = 0
-    jmp .loop
+    xor rcx, rcx
 
 .loop:
-    cmp byte [rsi + rdx], 0 ; src[i] != 0
+    mov rdx, [rsi + rcx] ; move str char (rdx+rcx) into rdx
+    cmp rdx, 0 ; check if rdx+rcx is 0
     je .done ; goto done
-    movzx rax, byte [rsi + rdx] ; store temp src[i]
-    mov byte [rdi + rdx], al ; dst[i] = src[i]
-    inc rdx ; i++
+    mov [rdi + rcx], rdx ; dst[i] = src[i]
+    inc rcx ; i++
     jmp .loop
 
 .done:
-    mov byte [rdi + rdx], 0
-    mov rax, rdi
-    pop rbp;
+    mov byte [rdi + rcx], 0 ; nullbyte at end
+    mov rax, rdi ; copy result in rax
     ret
